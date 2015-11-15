@@ -4,6 +4,7 @@ void init()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
+
 	glShadeModel(GL_FLAT);
 	glEnable(GL_DEPTH_TEST);
 
@@ -41,6 +42,7 @@ void human()
 	glPopMatrix();
 
 	///////////////////////////Head////////////////////////////
+	// head
 	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
 	glPushMatrix();
 	glTranslatef(man.head.x, man.head.y, man.head.z);
@@ -49,29 +51,29 @@ void human()
 	glutSolidCube(1);
 	glPopMatrix();
 
-	// left eye
-	glColor3f(0.9f, 0.9f, 0.9f);
-	glPushMatrix();
-	glTranslatef(-0.05, 0.03, -0.05);
-	glScalef(0.2, 0.1, 0.2);
-	glutSolidCube(1);
-	glPopMatrix();
+	//// left eye
+	//glColor3f(0.9f, 0.9f, 0.9f);
+	//glPushMatrix();
+	//glTranslatef(-0.05, 0.03, -0.05);
+	//glScalef(0.2, 0.1, 0.2);
+	//glutSolidCube(1);
+	//glPopMatrix();
 
-	// right eye
-	glColor3f(0.9f, 0.9f, 0.9f);
-	glPushMatrix();
-	glTranslatef(-0.05, 0.03, 0.05);
-	glScalef(0.2, 0.1, 0.2);
-	glutSolidCube(1);
-	glPopMatrix();
+	//// right eye
+	//glColor3f(0.9f, 0.9f, 0.9f);
+	//glPushMatrix();
+	//glTranslatef(-0.05, 0.03, 0.05);
+	//glScalef(0.2, 0.1, 0.2);
+	//glutSolidCube(1);
+	//glPopMatrix();
 
-	// mouth
-	glColor3f(1, 1, 1);
-	glPushMatrix();
-	glTranslatef(-0.03, -0.02, 0);
-	glScalef(0.3, 0.1, 0.3);
-	glutSolidCube(1);
-	glPopMatrix();
+	//// mouth
+	//glColor3f(1, 1, 1);
+	//glPushMatrix();
+	//glTranslatef(-0.03, -0.02, 0);
+	//glScalef(0.3, 0.1, 0.3);
+	//glutSolidCube(1);
+	//glPopMatrix();
 
 	glPopMatrix();
 
@@ -84,21 +86,24 @@ void human()
 	glPopMatrix();
 
 	/////////////////////////Leg/////////////////////////
+	//Left leg
 	glColor3f(67.0 / 255, 110.0 / 255, 238.0 / 255);
 	glPushMatrix();
-	glRotatef(left_thigh_angle, 0, 0, 1);
-	glTranslatef(thighL[0], thighL[1], thighL[2]);
-	glScalef(THIGH_SCALE_X, THIGH_SCALE_Y, THIGH_SCALE_Z);
-	glutSolidCube(basic_size);
+	glTranslatef(man.thighL.x, 2 * man.thighL.y, man.thighL.z);
+	glRotatef(man.ltangle, 0, 0, 1);
+	glTranslatef(0, -man.thighR.y, 0);
+	glScalef(man.thigh_scale.x, man.thigh_scale.y, man.thigh_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	//Right leg
 	glColor3f(67.0 / 255, 110.0 / 255, 238.0 / 255);
 	glPushMatrix();
-	glRotatef((GLfloat)right_thigh_angle, 0.0f, 0.0f, 1.0f);
-	glTranslatef(thighR[0], thighR[1], thighR[2]);
-	glScalef(THIGH_SCALE_X, THIGH_SCALE_Y, THIGH_SCALE_Z);
-	glutSolidCube(basic_size);
+	glTranslatef(man.thighR.x,2 * man.thighR.y, man.thighR.z);
+	glRotatef(man.rtangle, 0, 0, 1);
+	glTranslatef(0, - man.thighR.y,0);
+	glScalef(man.thigh_scale.x, man.thigh_scale.y, man.thigh_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	///////////////////////Arm////////////////////////
@@ -106,22 +111,21 @@ void human()
 	//Left Arm
 	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
 	glPushMatrix();
-	glTranslatef(0.0f, basic_size * BODY_SCALE_Y, 0.0f);
-	glRotatef((GLfloat)left_arm_angle, 0.0f, 0.0f, 1.0f);
-	glTranslatef(armL[0], armL[1], armL[2]);
-	glScalef(ARM_SCALE_X, ARM_SCALE_Y, ARM_SCALE_Z);
-	glutSolidCube(basic_size);
+	glTranslatef(man.armL.x, man.arm_scale.y / 2 + man.armL.y, man.armL.z);
+	glRotatef(man.laangle, 0, 0, 1);
+	glTranslatef(0, -man.arm_scale.y / 2, 0);
+	glScalef(man.arm_scale.x, man.arm_scale.y, man.arm_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	//Right Arm
 	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
 	glPushMatrix();
-	glTranslatef(0.0f, basic_size * BODY_SCALE_Y, 0.0f);
-	//Arm
-	glRotatef((GLfloat)right_arm_angle, 0.0f, 0.0f, 1.0f);
-	glTranslatef(armR[0], armR[1], armR[2]);
-	glScalef(ARM_SCALE_X, ARM_SCALE_Y, ARM_SCALE_Z);
-	glutSolidCube(basic_size);
+	glTranslatef(man.armR.x, man.arm_scale.y / 2 + man.armR.y, man.armR.z);
+	glRotatef(man.raangle, 0, 0, 1);
+	glTranslatef(0, -man.arm_scale.y / 2, 0);
+	glScalef(man.arm_scale.x, man.arm_scale.y, man.arm_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
 
@@ -129,58 +133,10 @@ void human()
 	glPopMatrix();
 }
 
-void crawler()
+void reference()
 {
-	glPushMatrix();
-	glRotatef(c_vangle, 0, 1, 0);
-	glTranslatef(crawler_x, crawler_y, crawler_z);
-
-	//head
-	glColor3f(0.0f, 130.0 / 255, 0.0f);
-	glPushMatrix();
-	glTranslatef(hair[0], hair[1], hair[2]);
-	glScalef(1, 1, 1);
-	glutSolidCube(basic_size);
-
-	// left eye
-	glColor3f(0, 0, 0);
-	glPushMatrix();
-	glTranslatef(-0.1, 0.03, -0.05);
-	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(basic_size);
-	glPopMatrix();
-
-	// right eye
-	glPushMatrix();
-	glTranslatef(-0.1, 0.03, 0.05);
-	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(basic_size);
-	glPopMatrix();
-
-	// mouth
-	glColor3f(0, 0, 0);
-	glTranslatef(-0.1, -0.1, 0);
-	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(basic_size);
-
-	glPopMatrix();
-
-	//body
-	glColor3f(0.0f, 130.0 / 255, 0.0f);
-	glPushMatrix();
-	glTranslatef(hair[0], hair[1] - 0.3, hair[2]);
-	glScalef(0.7, 3, 0.7);
-	glutSolidCube(basic_size);
-	glPopMatrix();
-
-	//leg
-	glPushMatrix();
-	glTranslatef(hair[0], hair[1] - 0.7, hair[2]);
-	glScalef(1, 1, 1);
-	glutSolidCube(basic_size);
-	glPopMatrix();
-
-	glPopMatrix();
+	glPolygonMode(GL_FRONT_AND_BACK, GLU_FILL);
+	glutSolidCube(3);
 }
 
 void floor()
@@ -189,10 +145,10 @@ void floor()
 	for (int i = 0; i < NUM_OF_LINE * 2; i++)
 	{
 		glBegin(GL_LINES);
-		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, NUM_OF_LINE * BLOCK_SIZE);
-		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, -NUM_OF_LINE * BLOCK_SIZE);
-		glVertex3f(NUM_OF_LINE * BLOCK_SIZE, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
-		glVertex3f(-NUM_OF_LINE * BLOCK_SIZE, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
+		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE, -1, NUM_OF_LINE * BLOCK_SIZE);
+		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE, -1, -NUM_OF_LINE * BLOCK_SIZE);
+		glVertex3f(NUM_OF_LINE * BLOCK_SIZE, -1, (NUM_OF_LINE - i) * BLOCK_SIZE);
+		glVertex3f(-NUM_OF_LINE * BLOCK_SIZE, -1, (NUM_OF_LINE - i) * BLOCK_SIZE);
 		glEnd();
 	}
 }
@@ -203,15 +159,36 @@ void display()
 
 	floor();
 	human();
-	crawler();
+	reference();
+	//crawler();
 
 	glutSwapBuffers();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(75.0, (GLfloat)scr_w / scr_h, near_sight, far_sight);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	lookAt.x = man.x - 5 * cos(vangle / 180.0 * PI);
-	lookAt.y = basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2;
-	lookAt.z = man.z + 5 * sin(vangle / 180.0 * PI);
-	gluLookAt(man.x, man.y, man.z,
+	if (first_person)
+	{
+		cameraAt.x = man.x;
+		cameraAt.y = man.head.y;
+		cameraAt.z = man.z;
+
+		lookAt.x = man.x - 5 * cos(man.vangle / 180.0 * PI);
+		lookAt.y = man.hair.y;
+		lookAt.z = man.z + 5 * sin(man.vangle / 180.0 * PI);
+	}
+	else
+	{
+		cameraAt.x = 5;
+		cameraAt.y = 5;
+		cameraAt.z = 5;
+
+		lookAt.x = 0;
+		lookAt.y = 0;
+		lookAt.z = 0;
+	}
+	gluLookAt(cameraAt.x, cameraAt.y, cameraAt.z,
 		lookAt.x, lookAt.y, lookAt.z,
 		0.0f, 1.0f, 0.0f);
 	//cout <<"x:"<< human_x <<"y:"<< human_y<<"z:"<< human_z<< endl;
@@ -228,53 +205,50 @@ void refresh(int c)
 	//center.y = -(1 - sin(-left_thigh_angle / 180.0 * PI)) * basic_size * THIGH_SCALE_X + basic_size * FOOT_SCALE_Y / 2;
 	if (man.isMoving())
 	{
-		if (left_thigh_angle < -120)
+		if (man.ltangle < -60)
 		{
 			left_forward = false;
 		}
-		else if (left_thigh_angle > -60)
+		else if (man.ltangle > 60)
 		{
 			left_forward = true;
 		}
-		if (right_thigh_angle < -120)
+		if (man.rtangle < -60)
 		{
 			right_forward = false;
 		}
-		else if (right_thigh_angle > -60)
+		else if (man.rtangle > 60)
 		{
 			right_forward = true;
 		}
 		if (left_forward)
 		{
-			left_thigh_angle--;
-			left_arm_angle += 1.0;
-			left_forearm_angle += 0.5;
+			man.ltangle--;
+			man.laangle++;
 		}
 		else
 		{
-			left_thigh_angle++;
-			left_arm_angle -= 1.0;
-			left_forearm_angle -= 0.5;
+			man.ltangle++;
+			man.laangle--;
 		}
 		if (right_forward)
 		{
-			right_thigh_angle--;
-			right_arm_angle += 1.0;
-			right_forearm_angle += 0.5;
+			man.rtangle--;
+			man.raangle++;
 		}
 		else
 		{
-			right_thigh_angle++;
-			right_arm_angle -= 1.0;
-			right_forearm_angle -= 0.5;
+			man.rtangle++;
+			man.raangle--;
 		}
 
 	}
-	else {
-		right_arm_angle = -90;
-		left_arm_angle = -90;
-		right_thigh_angle = -90;
-		left_thigh_angle = -90;
+	else 
+	{
+		man.raangle = 0;
+		man.laangle = 0;
+		man.rtangle = 0;
+		man.ltangle = 0;
 	}
 	glutTimerFunc(DELAY, refresh, 0);
 	glutPostRedisplay();
@@ -287,14 +261,14 @@ void reshape(int w, int h)
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(75.0, (GLfloat)scr_w / (GLfloat)scr_h, near_sight * view_stretch, far_sight * view_stretch);
+	gluPerspective(75.0, (GLfloat)scr_w / scr_h, near_sight, far_sight);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 
 	//切换视角
 	//gluLookAt(lookatX,lookatY,lookatZ,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
-	gluLookAt(lookatX, lookatY, lookatZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	//gluLookAt(lookatX, lookatY, lookatZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 }
 
 void mouse(int button, int state, int x, int y)
@@ -302,64 +276,36 @@ void mouse(int button, int state, int x, int y)
 	switch (button)
 	{
 	case GLUT_LEFT_BUTTON:
-		if (state == GLUT_DOWN)
+		//视角放大
+		if (state == GLUT_DOWN && near_sight * VIEW_SCALE > 5)
 		{
-			//视角放大收缩
-			if (near_sight * view_stretch > 0.5)
-				view_stretch *= STRETCH_SCALE;
+			near_sight /= VIEW_SCALE;
+			far_sight /= VIEW_SCALE;
+
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
-			gluPerspective(75.0, (GLfloat)scr_w / (GLfloat)scr_h, near_sight * view_stretch, far_sight * view_stretch);
-			glMatrixMode(GL_MODELVIEW);
-			glLoadIdentity();
-			gluLookAt(lookatX * view_stretch, lookatY * view_stretch, lookatZ * view_stretch, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+			gluPerspective(75.0, (float)scr_w / scr_h, near_sight, far_sight);
+			//glMatrixMode(GL_MODELVIEW);
+			//glLoadIdentity();
+			//gluLookAt(lookatX * view_stretch, lookatY * view_stretch, lookatZ * view_stretch, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 		}
 		break;
 	case GLUT_RIGHT_BUTTON:
-		if (state == GLUT_DOWN)
+		// 视角收缩
+		if (state == GLUT_DOWN && far_sight / VIEW_SCALE <1000)
 		{
-			//减小收缩
-			if (far_sight * view_stretch < 1000.0)
-				view_stretch /= STRETCH_SCALE;
+			near_sight *= VIEW_SCALE;
+			far_sight *= VIEW_SCALE;
+
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
-			gluPerspective(75.0, (GLfloat)scr_w / (GLfloat)scr_h, near_sight * view_stretch, far_sight * view_stretch);
-			glMatrixMode(GL_MODELVIEW);
-			glLoadIdentity();
-			gluLookAt(lookatX * view_stretch, lookatY * view_stretch, lookatZ * view_stretch, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+			gluPerspective(75.0, (float)scr_w / scr_h, near_sight, far_sight);
+			//glMatrixMode(GL_MODELVIEW);
+			//glLoadIdentity();
+			//gluLookAt(lookatX * view_stretch, lookatY * view_stretch, lookatZ * view_stretch, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 		}
 		break;
 	}
-}
-
-void SpecialKeys(int key, int x, int y)
-{
-	if (key == GLUT_KEY_UP)
-		xRot -= 5.0f;
-
-	if (key == GLUT_KEY_DOWN)
-		xRot += 5.0f;
-
-	if (key == GLUT_KEY_LEFT)
-		yRot -= 5.0f;
-
-	if (key == GLUT_KEY_RIGHT)
-		yRot += 5.0f;
-
-	if (key > 356.0f)
-		xRot = 0.0f;
-
-	if (key < -1.0f)
-		xRot = 355.0f;
-
-	if (key > 356.0f)
-		yRot = 0.0f;
-
-	if (key < -1.0f)
-		yRot = 355.0f;
-
-	// 刷新窗口
-	glutPostRedisplay();
 }
 
 void control(unsigned char key, int x, int y)
@@ -367,67 +313,23 @@ void control(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 'a':
-		man_move = true;
-		vangle = (vangle + 4) % 360;
+		man.move = true;
 		break;
 	case 'd':
-		man_move = true;
-		vangle = (vangle - 4) % 360;
+		man.move = true;
 		break;
 	case 'w':
-		/*vangle = -(180 - vangle) % 360;*/
-		man_move = true;
-		human_x -= INCREMENT * cos((double)vangle / 180.0 * PI);
-		human_z += INCREMENT * sin((double)vangle / 180.0 * PI);
-		//dx = INCREMENT ;
+		man.move = true;
+		man.x -= man.speed * cos(man.vangle / 180 * PI);
+		man.z += man.speed * sin(man.vangle / 180 * PI);
 		break;
 	case 's':
-		/*vangle = -(180 - vangle) % 360;*/
-		human_x += INCREMENT * cos((double)vangle / 180.0 * PI);
-		human_z -= INCREMENT * sin((double)vangle / 180.0 * PI);
-		man_move = true;
+		man.move = true;
+		man.x += man.speed * cos(man.vangle / 180 * PI);
+		man.z -= man.speed * sin(man.vangle / 180 * PI);
 		break;
-	case 'z':
-		c_vangle = (c_vangle + 4) % 360;
-		break;
-	case 'x':
-		c_vangle = (c_vangle - 4) % 360;
-		break;
-	case 'c':
-		crawler_x += INCREMENT;
-		break;
-	case 'v':
-		crawler_x -= INCREMENT;
-		break;
-	case 'j':
-		//向左
-		p_air.x -= 0.05;
-		break;
-	case 'l':
-		//向右
-		p_air.x += 0.05;
-		break;
-	case 'i':
-		//向前
-		p_air.z -= 0.05;
-		break;
-	case 'k':
-		//向后
-		p_air.z += 0.05;
-		break;
-	case 'o':
-		//上升
-		p_air.y += 0.05;
-		break;
-	case 'p':
-		//下降
-		p_air.y -= 0.05;
-		break;
-	case 'r':
-		//各位置复位
-		p_air.x = 1.0;
-		p_air.y = 1.0;
-		p_air.z = 1.0;
+	case 'h':
+		first_person = !first_person;
 		break;
 	case 27:
 		exit(0);
@@ -441,16 +343,16 @@ void controlup(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case 'w':
-		man_move = false;
+		man.move = false;
 		break;
 	case 's':
-		man_move = false;
+		man.move = false;
 		break;
 	case 'a':
-		man_move = false;
+		man.move = false;
 		break;
 	case 'd':
-		man_move = false;
+		man.move = false;
 		break;
 	}
 }
@@ -468,7 +370,7 @@ int main(int argc, char *argv[])
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutPassiveMotionFunc(passiveMotion);
-	glutSpecialFunc(SpecialKeys);
+	//glutSpecialFunc(SpecialKeys);
 	glutMouseFunc(mouse);
 	glutKeyboardUpFunc(controlup);
 	glutKeyboardFunc(control);
