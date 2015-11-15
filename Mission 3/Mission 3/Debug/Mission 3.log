@@ -1,20 +1,112 @@
-﻿生成启动时间为 2015/11/15 0:59:54。
+﻿生成启动时间为 2015/11/15 16:22:07。
      1>项目“D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Mission 3\Mission 3.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt "源.cpp"
          源.cpp
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(57): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(59): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(60): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(61): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(62): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(63): warning C4838: 从“double”转换到“float”需要收缩转换
-     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(64): warning C4838: 从“double”转换到“float”需要收缩转换
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Debug\Mission 3.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Debug\Mission 3.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Debug\Mission 3.lib" /MACHINE:X86 "Debug\源.obj"
-         Mission 3.vcxproj -> D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Debug\Mission 3.exe
-     1>已完成生成项目“D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Mission 3\Mission 3.vcxproj”(Build 个目标)的操作。
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(33): error C2065: “human_y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(33): error C2065: “human_z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(34): error C2065: “vangle”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(39): error C2065: “hair”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(39): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(40): error C2065: “HAIR_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(40): error C2065: “HAIR_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(40): error C2065: “HAIR_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(41): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(48): error C2065: “neck”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(48): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(50): error C2065: “HEAD_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(50): error C2065: “HEAD_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(50): error C2065: “HEAD_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(51): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(59): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(66): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(73): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(79): error C2065: “spine”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(79): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(80): error C2065: “BODY_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(80): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(80): error C2065: “BODY_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(81): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(89): error C2065: “thighL”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(89): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(90): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(90): error C2065: “THIGH_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(90): error C2065: “THIGH_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(91): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(98): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(98): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(98): error C2660: “glTranslatef”: 函数不接受 2 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(100): error C2065: “armL”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(100): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(101): error C2065: “ARM_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(101): error C2065: “ARM_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(101): error C2065: “ARM_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(102): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(109): error C2065: “thighR”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(109): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(110): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(110): error C2065: “THIGH_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(110): error C2065: “THIGH_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(111): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(117): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(117): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(117): error C2660: “glTranslatef”: 函数不接受 2 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(120): error C2065: “armR”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(120): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(121): error C2065: “ARM_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(121): error C2065: “ARM_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(121): error C2065: “ARM_SCALE_Z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(122): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(133): error C2065: “c_vangle”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(134): error C2065: “crawler_x”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(134): error C2065: “crawler_y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(134): error C2065: “crawler_z”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(139): error C2065: “hair”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(139): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(141): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(148): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(155): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(162): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(169): error C2065: “hair”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(169): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(171): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(176): error C2065: “hair”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(176): error C2660: “glTranslatef”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(178): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(187): error C2065: “NUM_OF_LINE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2065: “NUM_OF_LINE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2065: “BLOCK_SIZE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(190): error C2660: “glVertex3f”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2065: “NUM_OF_LINE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2065: “BLOCK_SIZE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(191): error C2660: “glVertex3f”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2065: “NUM_OF_LINE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2065: “BLOCK_SIZE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(192): error C2660: “glVertex3f”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2065: “NUM_OF_LINE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2065: “BLOCK_SIZE”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(193): error C2660: “glVertex3f”: 函数不接受 1 个参数
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(209): error C2065: “vangle”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(210): error C2065: “basic_size”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(210): error C2065: “BODY_SCALE_Y”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(210): error C2065: “THIGH_SCALE_X”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(211): error C2065: “vangle”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(295): error C2065: “lookatX”: 未声明的标识符
+     1>d:\用户\documents\github\opengl for minecraft\mission 3\mission 3\源.cpp(295): fatal error C1003: 错误计数超过 100；正在停止编译
+     1>已完成生成项目“D:\用户\Documents\GitHub\OpenGL For MineCraft\Mission 3\Mission 3\Mission 3.vcxproj”(Build 个目标)的操作 - 失败。
 
-已成功生成。
+生成失败。
 
-已用时间 00:00:01.03
+已用时间 00:00:01.19

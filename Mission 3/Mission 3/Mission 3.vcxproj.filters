@@ -19,4 +19,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Point.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Man.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Param.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Crawler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

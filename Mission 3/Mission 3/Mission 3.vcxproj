@@ -120,6 +120,12 @@
   <ItemGroup>
     <ClCompile Include="源.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Crawler.h" />
+    <ClInclude Include="Man.h" />
+    <ClInclude Include="Param.h" />
+    <ClInclude Include="Point.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

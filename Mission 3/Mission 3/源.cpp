@@ -1,117 +1,12 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <gl/GLUT.h>
-using namespace std;
-
-#define DELAY 12
-
-
-//飞机模型参数
-static GLfloat xRot = 0.0f;
-static GLfloat yRot = 0.0f;
-static double x_air = 1.0f;
-static double y_air = 1.0f;
-static double z_air = 1.0f;
-
-
-//人物模型常量
-const double BASIC_SIZE = 0.25;
-const double STRETCH_SCALE = 0.8;
-const double JOINT_SPAN = 1.25;
-const double HEAD_RADIUS = 0.1;
-const double HAIR_SCALE_X = 0.5;
-const double HAIR_SCALE_Y = 0.3;
-const double HAIR_SCALE_Z = 0.75;
-const double HEAD_SCALE_X = 0.5;
-const double HEAD_SCALE_Y = 0.5;
-const double HEAD_SCALE_Z = 0.75;
-const double THIGH_SCALE_X = 1.4;
-const double THIGH_SCALE_Y = 0.4;
-const double THIGH_SCALE_Z = 0.4;
-const double CALF_SCALE_X = 0.9;
-const double CALF_SCALE_Y = 0.4;
-const double CALF_SCALE_Z = 0.4;
-const double FOOT_SCALE_X = 0.4;
-const double FOOT_SCALE_Y = 0.4;
-const double FOOT_SCALE_Z = 0.4;
-const double BODY_SCALE_X = 0.75;
-const double BODY_SCALE_Y = 1.25;
-const double BODY_SCALE_Z = 0.75;
-const double ARM_SCALE_X = 1.3;
-const double ARM_SCALE_Y = 0.3;
-const double ARM_SCALE_Z = 0.3;
-const double FOREARM_SCALE_X = 0.65;
-const double FOREARM_SCALE_Y = 0.3;
-const double FOREARM_SCALE_Z = 0.3;
-
-//相对坐标常量
-const static double PI = acos(-1.0);
-const double INCREMENT = 0.05;
-const int NUM_OF_LINE = 32;
-const int BLOCK_SIZE = 1;
-
-//人物模型参数
-float neck[3] = { 0.0f,BASIC_SIZE * (BODY_SCALE_Y + HEAD_SCALE_Y / 2),0.0f };
-float hair[3] = { 0.0f,BASIC_SIZE * (BODY_SCALE_Y + HEAD_SCALE_Y + HAIR_SCALE_Y / 2),0.0f };
-float spine[3] = { 0.0f,BASIC_SIZE * BODY_SCALE_Y / 2,0.0f };
-float thighL[3] = { BASIC_SIZE * THIGH_SCALE_X / 2,0.0f,0.5*BASIC_SIZE * THIGH_SCALE_Z };
-float calfL[3] = { BASIC_SIZE * CALF_SCALE_X / 2,0.0f,0.0f };
-float thighR[3] = { BASIC_SIZE * THIGH_SCALE_X / 2,0.0f,-0.5*BASIC_SIZE * THIGH_SCALE_Z };
-float calfR[3] = { BASIC_SIZE * CALF_SCALE_X / 2,0.0f,0.0f };
-float armL[3] = { BASIC_SIZE * ARM_SCALE_X / 2,0.0f,BASIC_SIZE * (ARM_SCALE_Z + BODY_SCALE_Z) / 2 };
-float armR[3] = { BASIC_SIZE * ARM_SCALE_X / 2,0.0f,-BASIC_SIZE * (ARM_SCALE_Z + BODY_SCALE_Z) / 2 };
-
-//相对坐标参数
-bool left_forward = true;
-bool right_forward = false;
-bool look_from_left = true;
-bool man_move = false;
-double floor_move_x = 0.0;
-double floor_move_y = 0.0;
-double view_stretch = 5.0;
-double near_sight = 1.0;
-double far_sight = 200.0;
-double lookatX = 5;
-double lookatY = 5;
-double lookatZ = 5;
-double centerX = 0;
-double centerY = 0;
-double centerZ = 0;
-GLfloat human_x = 0;
-GLfloat human_y = 0;
-GLfloat human_z = 0;
-GLfloat crawler_x = 1;
-GLfloat crawler_y = 0;
-GLfloat crawler_z = -1;
-GLfloat dx = 0;
-int scr_w;
-int scr_h;
-int vangle = 0;
-GLint c_vangle = 0;
-float left_thigh_angle = -60;
-float left_calf_angle = 30;
-float left_foot_angle = 90;
-float right_thigh_angle = -120;
-float right_calf_angle = 30;
-float right_foot_angle = 90;
-float left_arm_angle = -115;
-float left_forearm_angle = -30;
-float right_arm_angle = -75;
-float right_forearm_angle = -15;
-
-// 绝对坐标参数
+#include "Param.h"
 
 void init()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	//GLfloat ambientLight[] = {0.5f, 0.5f, 0.5f, 1.0f};
 
 	glShadeModel(GL_FLAT);
 	glEnable(GL_DEPTH_TEST);
 
-	//飞机
 	GLfloat ambientLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };  // 明亮的白光
 	glEnable(GL_DEPTH_TEST);    // Hidden surface removal
 	glEnable(GL_CULL_FACE);        // Do not calculate inside of jet
@@ -133,27 +28,25 @@ void init()
 void human()
 {
 	// 人
-
 	glPushMatrix();
-	glTranslatef(human_x, human_y, human_z);
-	glRotatef(vangle, 0, 1, 0);
+	glTranslatef(man.x, man.y, man.z);
+	glRotatef(man.vangle, 0, 1, 0);
 
-	//Hair
+	////////////////////////////Hair//////////////////////////
 	glColor3f(0.0f, 0.0f, 0.0f);
 	glPushMatrix();
-	glTranslatef(hair[0], hair[1], hair[2]);
-	glScalef(HAIR_SCALE_X, HAIR_SCALE_Y, HAIR_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glTranslatef(man.hair.x, man.hair.y, man.hair.z);
+	glScalef(man.hair_scale.x, man.hair_scale.y, man.hair_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
-	//Head
-	//glColor3f(0.9f, 0.9f, 0.9f);
+	///////////////////////////Head////////////////////////////
 	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
 	glPushMatrix();
-	glTranslatef(neck[0], neck[1], neck[2]);
+	glTranslatef(man.head.x, man.head.y, man.head.z);
 	glPushMatrix();
-	glScalef(HEAD_SCALE_X, HEAD_SCALE_Y, HEAD_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glScalef(man.head_scale.x, man.head_scale.y, man.head_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	// left eye
@@ -161,50 +54,42 @@ void human()
 	glPushMatrix();
 	glTranslatef(-0.05, 0.03, -0.05);
 	glScalef(0.2, 0.1, 0.2);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	// right eye
+	glColor3f(0.9f, 0.9f, 0.9f);
 	glPushMatrix();
 	glTranslatef(-0.05, 0.03, 0.05);
 	glScalef(0.2, 0.1, 0.2);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(1);
 	glPopMatrix();
 
 	// mouth
 	glColor3f(1, 1, 1);
+	glPushMatrix();
 	glTranslatef(-0.03, -0.02, 0);
 	glScalef(0.3, 0.1, 0.3);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(1);
 	glPopMatrix();
 
-	//Body
+	glPopMatrix();
+
+	///////////////////////////Body////////////////////////////
 	glColor3f(0.0f, 206.0 / 255, 209.0 / 255);
 	glPushMatrix();
-	glTranslatef(spine[0], spine[1], spine[2]);
-	glScalef(BODY_SCALE_X, BODY_SCALE_Y, BODY_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glTranslatef(man.body.x, man.body.y, man.body.z);
+	glScalef(man.body_scale.x, man.body_scale.y, man.body_scale.z);
+	glutSolidCube(1);
 	glPopMatrix();
 
-	//Left leg
+	/////////////////////////Leg/////////////////////////
 	glColor3f(67.0 / 255, 110.0 / 255, 238.0 / 255);
 	glPushMatrix();
-	//Thigh
-	glRotatef((GLfloat)left_thigh_angle, 0.0f, 0.0f, 1.0f);
+	glRotatef(left_thigh_angle, 0, 0, 1);
 	glTranslatef(thighL[0], thighL[1], thighL[2]);
 	glScalef(THIGH_SCALE_X, THIGH_SCALE_Y, THIGH_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
-	glPopMatrix();
-
-
-	//Left Arm
-	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
-	glPushMatrix();
-	glTranslatef(0.0f, BASIC_SIZE * BODY_SCALE_Y, 0.0f);
-	glRotatef((GLfloat)left_arm_angle, 0.0f, 0.0f, 1.0f);
-	glTranslatef(armL[0], armL[1], armL[2]);
-	glScalef(ARM_SCALE_X, ARM_SCALE_Y, ARM_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	//Right leg
@@ -213,126 +98,32 @@ void human()
 	glRotatef((GLfloat)right_thigh_angle, 0.0f, 0.0f, 1.0f);
 	glTranslatef(thighR[0], thighR[1], thighR[2]);
 	glScalef(THIGH_SCALE_X, THIGH_SCALE_Y, THIGH_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
+	glPopMatrix();
+
+	///////////////////////Arm////////////////////////
+
+	//Left Arm
+	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
+	glPushMatrix();
+	glTranslatef(0.0f, basic_size * BODY_SCALE_Y, 0.0f);
+	glRotatef((GLfloat)left_arm_angle, 0.0f, 0.0f, 1.0f);
+	glTranslatef(armL[0], armL[1], armL[2]);
+	glScalef(ARM_SCALE_X, ARM_SCALE_Y, ARM_SCALE_Z);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	//Right Arm
 	glColor3f(139.0 / 255, 115.0 / 255, 85.0 / 255);
 	glPushMatrix();
-	glTranslatef(0.0f, BASIC_SIZE * BODY_SCALE_Y, 0.0f);
+	glTranslatef(0.0f, basic_size * BODY_SCALE_Y, 0.0f);
 	//Arm
 	glRotatef((GLfloat)right_arm_angle, 0.0f, 0.0f, 1.0f);
 	glTranslatef(armR[0], armR[1], armR[2]);
 	glScalef(ARM_SCALE_X, ARM_SCALE_Y, ARM_SCALE_Z);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
-
-
-	glPopMatrix();
-}
-
-void plane()
-{
-	glPushMatrix();
-
-	glTranslatef(x_air, y_air, z_air);
-	glRotatef(xRot, 1.0f, 0.0f, 0.0f);  // 绕X轴旋转
-	glRotatef(yRot, 0.0f, 1.0f, 0.0f);  // 绕Y轴旋转
-
-
-										// 飞机
-	glBegin(GL_TRIANGLES);
-	// 机头 
-	glColor3f(0.79f, 0.08f, 0.14f);  // 深红
-	glVertex3f(-15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, 60.0f / 100);
-
-	glColor3f(0.97f, 0.29f, 0.30f);  // 粉红
-	glVertex3f(-15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, 60.0f / 100);
-	glVertex3f(0.0f / 100, 15.0f / 100, 30.0f / 100);
-
-	glColor3f(1.0f, 0.51f, 0.0f);  // 橘黄
-	glVertex3f(0.0f / 100, 0.0f / 100, 60.0f / 100);
-	glVertex3f(15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 15.0f / 100, 30.0f / 100);
-
-	// 机身
-	glColor3f(0.0f, 1.0f, 0.0f);  // 亮绿 
-	glVertex3f(-15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 15.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-
-	glColor3f(1.0f, 1.0f, 0.0f);  // 明黄
-	glVertex3f(0.0f / 100, 15.0f / 100, 30.0f / 100);
-	glVertex3f(15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-
-	glColor3f(0.73f, 0.0f, 0.57f);  // 紫色
-	glVertex3f(15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(-15.0f / 100, 0.0f / 100, 30.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-
-	// 机尾巴
-	glColor3f(0.79f, 0.08f, 0.14f);  // 深红
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 15.0f / 100, -70.0f / 100);
-
-	glColor3f(0.97f, 0.29f, 0.30f);  // 粉红
-	glVertex3f(-15.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-
-	glColor3f(1.0f, 0.51f, 0.0f);  // 橘黄
-	glVertex3f(15.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-
-	// 由于背面被消除，背面再画一次
-	glColor3f(0.73f / 100, 0.0f / 100, 0.57f);  // 紫色
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-	glVertex3f(0.0f / 100, 15.0f / 100, -70.0f / 100);
-
-
-	glColor3f(1.0f, 1.0f, 0.0f);  // 明黄
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-	glVertex3f(-15.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-
-	glColor3f(1.0f, 1.0f, 0.0f);  // 明黄
-	glVertex3f(0.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(15.0f / 100, 0.0f / 100, -70.0f / 100);
-	glVertex3f(0.0f / 100, 0.0f / 100, -53.0f / 100);
-
-	// 机翼下侧面
-	glColor3ub(158, 196, 246 / 100);  // 紫蓝
-	glVertex3f(0.0f / 100, 2.0f / 100, 27.0f / 100);
-	glVertex3f(-60.0f / 100, 2.0f / 100, -8.0f / 100);
-	glVertex3f(60.0f / 100, 2.0f / 100, -8.0f / 100);
-
-	// 左翼
-	glColor3f(0.2f, 0.08f, 0.69f);  // 深蓝
-	glVertex3f(60.0f / 100, 2.0f / 100, -8.0f / 100);
-	glVertex3f(0.0f / 100, 7.0f / 100, -8.0f / 100);
-	glVertex3f(0.0f / 100, 2.0f / 100, 27.0f / 100);
-
-	// 右翼 
-	glColor3f(0.2f, 0.08f, 0.69f);  // 深蓝
-	glVertex3f(0.0f / 100, 2.0f / 100, 27.0f / 100);
-	glVertex3f(0.0f / 100, 7.0f / 100, -8.0f / 100);
-	glVertex3f(-60.0f / 100, 2.0f / 100, -8.0f / 100);
-
-	// 机翼后侧面
-	glColor3ub(192, 192, 192);
-	glVertex3f(60.0f / 100, 2.0f / 100, -8.0f / 100);
-	glVertex3f(-60.0f / 100, 2.0f / 100, -8.0f / 100);
-	glVertex3f(0.0f / 100, 7.0f / 100, -8.0f / 100);
-
-	glEnd();
 
 
 	glPopMatrix();
@@ -349,28 +140,28 @@ void crawler()
 	glPushMatrix();
 	glTranslatef(hair[0], hair[1], hair[2]);
 	glScalef(1, 1, 1);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 
 	// left eye
 	glColor3f(0, 0, 0);
 	glPushMatrix();
 	glTranslatef(-0.1, 0.03, -0.05);
 	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	// right eye
 	glPushMatrix();
 	glTranslatef(-0.1, 0.03, 0.05);
 	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	// mouth
 	glColor3f(0, 0, 0);
 	glTranslatef(-0.1, -0.1, 0);
 	glScalef(0.3, 0.3, 0.3);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 
 	glPopMatrix();
 
@@ -379,14 +170,14 @@ void crawler()
 	glPushMatrix();
 	glTranslatef(hair[0], hair[1] - 0.3, hair[2]);
 	glScalef(0.7, 3, 0.7);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	//leg
 	glPushMatrix();
 	glTranslatef(hair[0], hair[1] - 0.7, hair[2]);
 	glScalef(1, 1, 1);
-	glutSolidCube(BASIC_SIZE);
+	glutSolidCube(basic_size);
 	glPopMatrix();
 
 	glPopMatrix();
@@ -394,75 +185,48 @@ void crawler()
 
 void floor()
 {
-	if (man_move)
+	glColor3f(0.3f, 1.0f, 0.3f);
+	for (int i = 0; i < NUM_OF_LINE * 2; i++)
 	{
-		floor_move_x += INCREMENT * cos((double)vangle / 180.0 * PI);
-		x_air += INCREMENT * cos((double)vangle / 180.0 * PI);
-		floor_move_y += INCREMENT * sin((double)vangle / 180.0 * PI);
-		y_air += INCREMENT * sin((double)vangle / 180.0 * PI);
-		if (floor_move_x >= BLOCK_SIZE)
-		{
-			floor_move_x -= BLOCK_SIZE;
-		}
-		else if (floor_move_x <= -BLOCK_SIZE) {
-			floor_move_x += BLOCK_SIZE;
-		}
-		if (floor_move_y >= BLOCK_SIZE) {
-			floor_move_y -= BLOCK_SIZE;
-		}
-		else if (floor_move_y <= -BLOCK_SIZE)
-		{
-			floor_move_y += BLOCK_SIZE;
-		}
-		glPushMatrix();
-		glTranslatef(centerX, centerY, centerZ);
-		glPushMatrix();
-		glRotatef(vangle, 0.0f, 1.0f, 0.0f);
+		glBegin(GL_LINES);
+		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, NUM_OF_LINE * BLOCK_SIZE);
+		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, -NUM_OF_LINE * BLOCK_SIZE);
+		glVertex3f(NUM_OF_LINE * BLOCK_SIZE, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
+		glVertex3f(-NUM_OF_LINE * BLOCK_SIZE, -basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
+		glEnd();
 	}
 }
 
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glColor3f(0.3f, 1.0f, 0.3f);
-	//Floor
 
-	for (int i = 0; i < NUM_OF_LINE * 2; i++)
-	{
-		glBegin(GL_LINES);
-		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -BASIC_SIZE * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, NUM_OF_LINE * BLOCK_SIZE);
-		glVertex3f((NUM_OF_LINE - i) * BLOCK_SIZE + floor_move_x, -BASIC_SIZE * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, -NUM_OF_LINE * BLOCK_SIZE);
-		glVertex3f(NUM_OF_LINE * BLOCK_SIZE, -BASIC_SIZE * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
-		glVertex3f(-NUM_OF_LINE * BLOCK_SIZE, -BASIC_SIZE * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, (NUM_OF_LINE - i) * BLOCK_SIZE - floor_move_y);
-		glEnd();
-	}
-
-	//floor();
-	plane();
+	floor();
 	human();
 	crawler();
+
 	glutSwapBuffers();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(human_x, human_y, human_z, human_x - 5 * cos((double)vangle / 180.0 * PI) , BASIC_SIZE * (BODY_SCALE_Y + THIGH_SCALE_X) / 2, human_z + 5 * sin((double)vangle / 180.0 * PI), 0.0f, 1.0f, 0.0f);
+	lookAt.x = man.x - 5 * cos(vangle / 180.0 * PI);
+	lookAt.y = basic_size * (BODY_SCALE_Y + THIGH_SCALE_X) / 2;
+	lookAt.z = man.z + 5 * sin(vangle / 180.0 * PI);
+	gluLookAt(man.x, man.y, man.z,
+		lookAt.x, lookAt.y, lookAt.z,
+		0.0f, 1.0f, 0.0f);
 	//cout <<"x:"<< human_x <<"y:"<< human_y<<"z:"<< human_z<< endl;
 
 }
 
 void passiveMotion(int x, int y)
 {
-
-	vangle = (vangle - (x- scr_w/2) / 150) % 360;
-	//cout << x << endl;
-	//cout << x/200 << endl;
-	//cout << -(x - scr_w/2) / 200 << endl;
-	
+	man.vangle = (man.vangle - (x - scr_w / 2) / 150);
 }
 
 void refresh(int c)
 {
-	centerY = -(1 - sin(-left_thigh_angle / 180.0 * PI)) * BASIC_SIZE * THIGH_SCALE_X + BASIC_SIZE * FOOT_SCALE_Y / 2;
-	if (man_move)
+	//center.y = -(1 - sin(-left_thigh_angle / 180.0 * PI)) * basic_size * THIGH_SCALE_X + basic_size * FOOT_SCALE_Y / 2;
+	if (man.isMoving())
 	{
 		if (left_thigh_angle < -120)
 		{
@@ -483,36 +247,24 @@ void refresh(int c)
 		if (left_forward)
 		{
 			left_thigh_angle--;
-			if (left_thigh_angle < -90)
-				left_calf_angle++;
-			else left_calf_angle--;
 			left_arm_angle += 1.0;
 			left_forearm_angle += 0.5;
 		}
 		else
 		{
 			left_thigh_angle++;
-			if (left_thigh_angle <= -180)
-				left_calf_angle--;
-			else left_calf_angle++;
 			left_arm_angle -= 1.0;
 			left_forearm_angle -= 0.5;
 		}
 		if (right_forward)
 		{
 			right_thigh_angle--;
-			if (right_thigh_angle < -90)
-				right_calf_angle++;
-			else right_calf_angle--;
 			right_arm_angle += 1.0;
 			right_forearm_angle += 0.5;
 		}
 		else
 		{
 			right_thigh_angle++;
-			if (right_thigh_angle <= -90)
-				right_calf_angle--;
-			else right_calf_angle++;
 			right_arm_angle -= 1.0;
 			right_forearm_angle -= 0.5;
 		}
@@ -649,33 +401,33 @@ void control(unsigned char key, int x, int y)
 		break;
 	case 'j':
 		//向左
-		x_air -= 0.05;
+		p_air.x -= 0.05;
 		break;
 	case 'l':
 		//向右
-		x_air += 0.05;
+		p_air.x += 0.05;
 		break;
 	case 'i':
 		//向前
-		z_air -= 0.05;
+		p_air.z -= 0.05;
 		break;
 	case 'k':
 		//向后
-		z_air += 0.05;
+		p_air.z += 0.05;
 		break;
 	case 'o':
 		//上升
-		y_air += 0.05;
+		p_air.y += 0.05;
 		break;
 	case 'p':
 		//下降
-		y_air -= 0.05;
+		p_air.y -= 0.05;
 		break;
 	case 'r':
 		//各位置复位
-		x_air = 1.0;
-		y_air = 1.0;
-		z_air = 1.0;
+		p_air.x = 1.0;
+		p_air.y = 1.0;
+		p_air.z = 1.0;
 		break;
 	case 27:
 		exit(0);
@@ -702,6 +454,7 @@ void controlup(unsigned char key, int x, int y)
 		break;
 	}
 }
+
 int main(int argc, char *argv[])
 {
 	glutInit(&argc, argv);
@@ -720,7 +473,7 @@ int main(int argc, char *argv[])
 	glutKeyboardUpFunc(controlup);
 	glutKeyboardFunc(control);
 	//glutIdleFunc(idle);
-
+	//glutSetCursor
 
 	glutMainLoop();
 	return 0;
