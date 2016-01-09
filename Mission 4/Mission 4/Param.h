@@ -61,3 +61,14 @@ bool look_from_left = true;
 //窗口大小
 int WindowWidth = 600;
 int WindowHeight = 600;
+
+//纹理
+GLuint texGround;
+GLuint texWall;
+GLuint texLeaf;
+GLuint texRedStone;
+GLuint texGrass;
+GLuint texSoil;
+GLuint texStone;
+GLuint texWater;
+GLuint texWood;
