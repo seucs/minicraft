@@ -5,9 +5,9 @@
 #include <windows.h>
 #include <gl/GLUT.h>
 #include "Point.h"
-//#include "visualBall.h"
 #include "Crawler.h"
 #include "Man.h"
+#include "Cube.h"
 using namespace std;
 
 #define DELAY 12
@@ -35,7 +35,7 @@ int last_view = 0;
 enum { GOD, FIRST_PERSON, THIRD_PERSON, BALL };
 enum { HEAD, HAIR, BODY, THIGH_L, THIGH_R, ARM_L, ARMR, EYE_L, EYE_R, MOUTH };
 
-float near_sight = 5;
+float near_sight = 0.1f;
 float far_sight = 100;
 int scr_w;
 int scr_h;
@@ -62,6 +62,7 @@ bool right_forward = false;
 bool look_from_left = true;
 
 
+
 //光源太阳
 GLfloat s_angle = 0.0f;
 GLfloat LightPosition[] = { 0.0f,0.0f,0.0f,1.0f };		//光源位置
@@ -83,3 +84,19 @@ GLfloat MatDiffuse[] = { matDiffuseR, matDiffuseG, matDiffuseB, 1.0f };
 GLfloat matSpecularR, matSpecularG, matSpecularB;
 GLfloat MatSpecular[] = { matSpecularR, matSpecularG, matSpecularB, 1.0f };
 GLfloat MatShininess;
+
+//窗口大小
+int WindowWidth = 600;
+int WindowHeight = 600;
+
+//纹理
+GLuint texGround;
+GLuint texWall;
+GLuint texLeaf;
+GLuint texRedStone;
+GLuint texGrass;
+GLuint texSoil;
+GLuint texStone;
+GLuint texWater;
+GLuint texWood;
+
