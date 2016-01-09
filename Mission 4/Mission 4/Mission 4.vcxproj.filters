@@ -35,5 +35,8 @@
     <ClInclude Include="Point.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

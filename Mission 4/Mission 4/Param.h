@@ -6,6 +6,7 @@
 #include "Point.h"
 #include "Crawler.h"
 #include "Man.h"
+#include "Cube.h"
 using namespace std;
 
 #define DELAY 12
@@ -31,7 +32,7 @@ int last_view = 0;
 enum { GOD, FIRST_PERSON, THIRD_PERSON, BALL };
 enum { HEAD, HAIR, BODY, THIGH_L, THIGH_R, ARM_L, ARMR, EYE_L, EYE_R, MOUTH };
 
-float near_sight = 5;
+float near_sight = 0.1f;
 float far_sight = 100;
 int scr_w;
 int scr_h;
@@ -56,3 +57,7 @@ Man man;
 bool left_forward = true;
 bool right_forward = false;
 bool look_from_left = true;
+
+//´°¿Ú´óÐ¡
+int WindowWidth = 600;
+int WindowHeight = 600;

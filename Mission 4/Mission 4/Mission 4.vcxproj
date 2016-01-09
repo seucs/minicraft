@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crawler.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="Man.h" />
     <ClInclude Include="Param.h" />
     <ClInclude Include="Point.h" />
