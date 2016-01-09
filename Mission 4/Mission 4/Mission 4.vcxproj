@@ -26,9 +26,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crawler.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="Man.h" />
     <ClInclude Include="Param.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="visualBall.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BB85FAAF-3606-4219-90A2-7DAC30484ACF}</ProjectGuid>
