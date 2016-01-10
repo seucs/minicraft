@@ -8,6 +8,7 @@
 #include "Crawler.h"
 #include "Man.h"
 #include "Cube.h"
+#include "CubeMap.h"
 using namespace std;
 
 #define DELAY 12

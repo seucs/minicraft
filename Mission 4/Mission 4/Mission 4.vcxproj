@@ -31,6 +31,7 @@
     <ClInclude Include="Param.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="visualBall.h" />
+    <ClInclude Include="CubeMap.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BB85FAAF-3606-4219-90A2-7DAC30484ACF}</ProjectGuid>

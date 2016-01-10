@@ -124,11 +124,32 @@ void floor()
 	{
 		for (int j = num_cube;j >= (-num_cube);j--)
 		{
-			Cube* a = new Cube(i, 0, j, 1.0f, Cube::texGrass, Cube::texGrass, Cube::texSoil);
+			Cube* a = new Cube(i, 0, j, 1.0f, texGrass, texGrass, texSoil);
 			//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
 			a->createCube();
 		}
 	}
+
+	for (int i = 2; i <= 16; i++)
+	{
+		for (int j = 2; j <= 16; j++)
+		{
+			for (int k = 0; k <= 8; k++)
+			{
+				if (i == 2 || j == 2 || i == 16 || j == 16)
+				{
+					Cube* a = new Cube(i, k, j, 1.0f, texWood, texWood, texWood);
+					a->createCube();
+				}
+
+			}
+
+		}
+	}
+
+
+
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
 }
