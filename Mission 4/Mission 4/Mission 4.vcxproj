@@ -30,6 +30,7 @@
     <ClInclude Include="Man.h" />
     <ClInclude Include="Param.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="TexCube.h" />
     <ClInclude Include="visualBall.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

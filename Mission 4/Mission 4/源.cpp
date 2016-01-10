@@ -120,15 +120,18 @@ void floor()
 	int num_cube = 30;
 	int i = 1;
 	int j = 1;
-	for (int i = num_cube;i >= (-num_cube);i--)
-	{
-		for (int j = num_cube;j >= (-num_cube);j--)
-		{
-			Cube* a = new Cube(i, 0, j, 1.0f, Cube::texGrass, Cube::texGrass, Cube::texSoil);
-			//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
-			a->createCube();
-		}
-	}
+	//for (int i = num_cube;i >= (-num_cube);i--)
+	//{
+	//	for (int j = num_cube;j >= (-num_cube);j--)
+	//	{
+	//		Cube* a = new Cube(i, 0, j, 1.0f, texGrass, texGrass, texSoil);
+	//		//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
+	//		a->createCube();
+	//	}
+	//}
+	TexCube* a = new TexCube(i, 0, j, 1.0f, Stone);
+	//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
+	a->createCube();
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
 }
@@ -523,10 +526,8 @@ int main(int argc, char *argv[])
 	glTexParameterf(GL_NEAREST, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	refresh(0);
 
-	texGround = load_texture("ground.bmp");
-	texWall = load_texture("wall.bmp");
-	texLeaf = load_texture("leaf.bmp");;
-	texRedStone = load_texture("red.bmp");;
+
+	texRedStone = load_texture("redStone.bmp");
 	texGrass = load_texture("grass.bmp");
 	texSoil = load_texture("soil.bmp");
 	texStone = load_texture("stone.bmp");

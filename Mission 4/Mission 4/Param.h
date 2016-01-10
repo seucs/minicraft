@@ -8,6 +8,7 @@
 #include "Crawler.h"
 #include "Man.h"
 #include "Cube.h"
+#include "TexCube.h"
 using namespace std;
 
 #define DELAY 12
@@ -89,14 +90,5 @@ GLfloat MatShininess;
 int WindowWidth = 600;
 int WindowHeight = 600;
 
-//纹理相关设置
-GLuint texGround;
-GLuint texWall;
-GLuint texLeaf;
-GLuint texRedStone;
-GLuint texGrass;
-GLuint texSoil;
-GLuint texStone;
-GLuint texWater;
-GLuint texWood;
+
 

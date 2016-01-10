@@ -7,20 +7,11 @@ class Cube
 public:
 	Cube(float, float, float, float, GLuint, GLuint, GLuint);
 	void createCube();
-	~Cube();
-private:
+	~Cube();	
+protected:
+	Cube() {};
 	float _x, _y, _z, _size;
 	GLuint _top, _bot, _side;
-public:
-	//const static GLuint texGround;
-	//const static GLuint texWall;
-	//const static GLuint texLeaf;
-	//const static GLuint texRedStone;
-	//const static GLuint texGrass;
-	//const static GLuint texSoil;
-	//const static GLuint texStone;
-	//const static GLuint texWater;
-	//const static GLuint texWood;
 };
 
 
@@ -177,22 +168,26 @@ void Cube::createCube() {
 	glBindTexture(GL_TEXTURE_2D, _bot);
 	glBegin(GL_QUADS);
 	//底面
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y, z + size);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x + size, y, z + size);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x + size, y, z);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x + size, y, z + size);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y, z + size);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z);
 	glEnd();
 
-	//侧面
+
+
+	//侧面西
 	glBindTexture(GL_TEXTURE_2D, _side);
 	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x + size, y + size, z);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x + size, y, z);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y + size, z);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x + size, y + size, z);
 	glEnd();
 
-	//侧面
+
+	//侧面东
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z + size);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z + size);
@@ -200,19 +195,21 @@ void Cube::createCube() {
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z + size);
 	glEnd();
 
-	//侧面
+
+
+	//侧面南
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x + size, y, z + size);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z);
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(x + size, y + size, z);
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x + size, y + size, z + size);
 	glEnd();
-	//侧面
+	//侧面北
 	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z + size);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y + size, z);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z + size);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z );
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z + size);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y + size, z + size);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z);
 	glEnd();
 
 	//顶面
@@ -227,13 +224,3 @@ void Cube::createCube() {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-
-//const GLuint Cube::texGround = load_texture("ground.bmp");
-//const GLuint Cube::texWall = load_texture("wall.bmp");
-//const GLuint Cube::texLeaf = load_texture("leaf.bmp");;
-//const GLuint Cube::texRedStone = load_texture("red.bmp");;
-//const GLuint Cube::texGrass = load_texture("grass.bmp");
-//const GLuint Cube::texSoil = load_texture("soil.bmp");
-//const GLuint Cube::texStone = load_texture("stone.bmp");
-//const GLuint Cube::texWater = load_texture("water.bmp");
-//const GLuint Cube::texWood = load_texture("wood.bmp");
