@@ -7,8 +7,9 @@ class Cube
 public:
 	Cube(float, float, float, float, GLuint, GLuint, GLuint);
 	void createCube();
-	~Cube();
-private:
+	~Cube();	
+protected:
+	Cube() {};
 	float _x, _y, _z, _size;
 	GLuint _top, _bot, _side;
 };
