@@ -9,7 +9,6 @@
 #include "Man.h"
 #include "Cube.h"
 #include "TexCube.h"
-#include "Lable.h"
 using namespace std;
 
 #define DELAY 12
@@ -90,6 +89,7 @@ GLfloat MatShininess;
 //´°¿Ú´óÐ¡
 int WindowWidth = 600;
 int WindowHeight = 600;
+#include"Lable.h"
 
 
 

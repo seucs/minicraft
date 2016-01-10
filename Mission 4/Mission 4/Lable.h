@@ -43,3 +43,26 @@ GLvoid glPrint(GLint x, GLint y, const char *string, ...)		// Where The Printing
 	glPopMatrix();												// Restore The Old Projection Matrix
 }
 
+void initLable()
+{
+	RECT window;												// Storage For Window Dimensions					// Get Window Dimensions
+	glMatrixMode(GL_PROJECTION);								// Select The Projection Matrix
+	glPushMatrix();												// Store The Projection Matrix
+	glLoadIdentity();											// Reset The Projection Matrix
+	glOrtho(0,WindowWidth, 0, WindowHeight, -1, 1);				// Set Up An Ortho Screen
+	glMatrixMode(GL_MODELVIEW);									// Select The Modelview Matrix
+
+
+																// Game Stats / Title
+	glPrint(240, 450, "NeHe Productions");						// Print Title
+
+
+
+
+	glMatrixMode(GL_PROJECTION);								// Select The Projection Matrix
+	glPopMatrix();												// Restore The Old Projection Matrix
+	glMatrixMode(GL_MODELVIEW);									// Select The Modelview Matrix
+
+	glFlush();
+}
+

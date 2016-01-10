@@ -249,7 +249,6 @@ void display()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
 	human();
-	string a;
 
 	glutSwapBuffers();
 
