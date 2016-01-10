@@ -9,6 +9,7 @@
 #include "Man.h"
 #include "Cube.h"
 #include "TexCube.h"
+#include "Lable.h"
 using namespace std;
 
 #define DELAY 12

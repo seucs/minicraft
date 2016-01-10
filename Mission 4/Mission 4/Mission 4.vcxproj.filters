@@ -44,5 +44,8 @@
     <ClInclude Include="TexCube.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Lable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
