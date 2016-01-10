@@ -53,6 +53,7 @@ TexCube::TexCube(float x, float y, float z, float size,CubeTex tex)
 		_top = texStone;
 		_bot = texStone;
 		_side = texStone;
+		break;
 	case RedStone:
 		_top = texRedStone;
 		_bot = texRedStone;

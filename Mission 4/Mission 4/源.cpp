@@ -120,18 +120,15 @@ void floor()
 	int num_cube = 30;
 	int i = 1;
 	int j = 1;
-	//for (int i = num_cube;i >= (-num_cube);i--)
-	//{
-	//	for (int j = num_cube;j >= (-num_cube);j--)
-	//	{
-	//		Cube* a = new Cube(i, 0, j, 1.0f, texGrass, texGrass, texSoil);
-	//		//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
-	//		a->createCube();
-	//	}
-	//}
-	TexCube* a = new TexCube(i, 0, j, 1.0f, Stone);
-	//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
-	a->createCube();
+	for (int i = num_cube;i >= (-num_cube);i--)
+	{
+		for (int j = num_cube;j >= (-num_cube);j--)
+		{
+			TexCube* a = new TexCube(i, 0, j, 1.0f, Stone);
+			a->createCube();
+		}
+	}
+	
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
 }
@@ -387,6 +384,8 @@ void mouseButton(int button, int state, int x, int y)
 			cameraAt.z *= VIEW_SCALE;
 		}
 	}
+	TexCube* newCube = new TexCube(man.x + 1, man.y, man.z + 1, 1.0f, Stone);
+	newCube->createCube();
 }
 // 鼠标移动回调函数
 void mouseMotion(int x, int y)
