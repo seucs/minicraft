@@ -249,8 +249,7 @@ void display()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
 	human();
-
-	glPrint(0, 0, "NeHe Productions");
+	string a;
 
 	glutSwapBuffers();
 
