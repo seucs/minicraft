@@ -1,17 +1,6 @@
 #include "Param.h"
 #include "visualBall.h"
 
-void moveMouse()
-{
-	INPUT mouseInput;
-	ZeroMemory(&mouseInput, sizeof mouseInput);
-	mouseInput.type = INPUT_MOUSE;
-	mouseInput.mi.dx = 32767;
-	mouseInput.mi.dy = 32767;
-	mouseInput.mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
-	SendInput(1, &mouseInput, sizeof(mouseInput));
-}
-
 void human()
 {
 	// 人
@@ -125,19 +114,18 @@ void reference()
 	glPopMatrix();
 }
 
-
-
 void floor()
 {
 	glColor3f(0.3f, 1.0f, 0.3f);
-	int num_cube = 5;
+	int num_cube = 30;
 	int i = 1;
 	int j = 1;
 	for (int i = num_cube;i >= (-num_cube);i--)
 	{
 		for (int j = num_cube;j >= (-num_cube);j--)
 		{
-			Cube* a = new Cube(i,0,j,1.0f,texGrass,texGrass,texSoil);
+			Cube* a = new Cube(i, 0, j, 1.0f, Cube::texGrass, Cube::texGrass, Cube::texSoil);
+			//Cube* a = new Cube(i, 0, j, 1.0f, texWood, texWood, texWood);
 			a->createCube();
 		}
 	}
@@ -145,71 +133,16 @@ void floor()
 	
 }
 
-// 光源太阳
-void sun()
+//display中视角切换设置
+void setting_view_person()
 {
-	glPushMatrix();
-	glRotated(s_angle, 1, 0, 0);
-	glTranslatef(0.0f, 5.0f, 0.0f);
-
-	glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);		//设置环境光
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);		//设置漫射光
-	glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);	//镜面光
-	glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);	//设置光源位置
-
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHTING);
-
-	//绘制白色的太阳
-	MatShininess = 0.01f;
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
-
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glutSolidSphere(0.2, 40, 40);
-	glPopMatrix();
-	glEnable(GL_COLOR_MATERIAL);
-}
-
-void display()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glEnable(GL_BLEND);
-	sun();
-
-	glDisable(GL_BLEND);
-	floor();
-	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-
-	matDiffuseR = 1.0f, matDiffuseG = 1.0f, matDiffuseB = 0.0f;
-	matSpecularR = 0.5f, matSpecularG = 0.5f, matSpecularB = 0.5f;
-	MatShininess = 20.0f;
-
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
-	//reference();
-
-	matDiffuseR = 0.2f, matDiffuseG = 0.2f, matDiffuseB = 0.0f;
-	matSpecularR = 1.0f, matSpecularG = 1.0f, matSpecularB = 1.0f;
-	MatShininess = 130.0f;
-
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
-	//human();
-
-	glutSwapBuffers();
-
-
 	if (view_person == FIRST_PERSON)
 	{
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		cameraAt.x = man.x;
+		cameraAt.x = man.x + 1.3 * cos(man.vangle / 180.0 * PI);
 		cameraAt.y = man.head.y;
-		cameraAt.z = man.z;
+		cameraAt.z = man.z - 1.3 * sin(man.vangle / 180.0 * PI);
 
 		lookAt.x = man.x + 5 * cos(man.vangle / 180.0 * PI);
 		lookAt.y = man.hair.y;
@@ -259,6 +192,67 @@ void display()
 			glRotatef(angle, axis[0], axis[1], axis[2]);
 		}
 	}
+}
+
+// 光源太阳
+void sun()
+{
+	glPushMatrix();
+	glRotated(s_angle, 1, 0, 0);
+	glTranslatef(0.0f, 5.0f, 0.0f);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);		//设置环境光
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);		//设置漫射光
+	glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);	//镜面光
+	glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);	//设置光源位置
+
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+
+	//绘制白色的太阳
+	MatShininess = 0.01f;
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glutSolidSphere(0.2, 40, 40);
+	glPopMatrix();
+	glEnable(GL_COLOR_MATERIAL);
+}
+
+void display()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glEnable(GL_BLEND);
+	sun();
+
+	glDisable(GL_BLEND);
+	floor();
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+	matDiffuseR = 1.0f, matDiffuseG = 1.0f, matDiffuseB = 0.0f;
+	matSpecularR = 0.5f, matSpecularG = 0.5f, matSpecularB = 0.5f;
+	MatShininess = 20.0f;
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+	reference();
+
+	matDiffuseR = 0.2f, matDiffuseG = 0.2f, matDiffuseB = 0.0f;
+	matSpecularR = 1.0f, matSpecularG = 1.0f, matSpecularB = 1.0f;
+	MatShininess = 130.0f;
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+	human();
+
+	glutSwapBuffers();
+
+	setting_view_person();
+
 }
 
 void init()
@@ -344,9 +338,19 @@ void reshape(int w, int h)
 // s鼠标空闲回调函数
 void passiveMotion(int x, int y)
 {
-	//man.vangle = (man.vangle - (x - scr_w / 2) / 150);
+	float r = 0.06;
 	man.vangle -= 0.1*(x - last_mm_x);
-	cout << man.vangle << endl;
+
+	if (x < r*scr_w && last_mm_x>x)
+	{
+		x = (1 - r) * scr_w;
+		SetCursorPos(x, y);
+	}
+	else if (x > (1 - r) * scr_w && last_mm_x < x)
+	{
+		x = r * scr_w;
+		SetCursorPos(x, y);
+	}
 	last_mm_x = x;
 	last_mm_y = y;
 	//moveMouse();
@@ -355,10 +359,13 @@ void passiveMotion(int x, int y)
 void mouseButton(int button, int state, int x, int y)
 {
 	if (button == GLUT_LEFT_BUTTON)
+	{
 		switch (state)
 		{
 		case GLUT_DOWN:
-			//y = scr_h - y;
+			cameraAt.x /= VIEW_SCALE;
+			cameraAt.y /= VIEW_SCALE;
+			cameraAt.z /= VIEW_SCALE;
 			startMotion(x, y);
 			break;
 		case GLUT_UP:
@@ -366,13 +373,12 @@ void mouseButton(int button, int state, int x, int y)
 			break;
 
 		}
+	}
 	else if (button == GLUT_RIGHT_BUTTON)
 	{
 		// 视角收缩
-		if (state == GLUT_DOWN && far_sight / VIEW_SCALE <1000)
+		if (state == GLUT_DOWN)
 		{
-			/*near_sight *= VIEW_SCALE;
-			far_sight *= VIEW_SCALE;*/
 			cameraAt.x *= VIEW_SCALE;
 			cameraAt.y *= VIEW_SCALE;
 			cameraAt.z *= VIEW_SCALE;
@@ -402,6 +408,7 @@ void control(unsigned char key, int x, int y)
 		man.move = true;
 		man.x -= man.speed * sin(man.vangle / 180 * PI);
 		man.z -= man.speed * cos(man.vangle / 180 * PI);
+		//cout << "qqq" << endl;
 		break;
 	case 'd':
 		man.move = true;
@@ -507,6 +514,7 @@ int main(int argc, char *argv[])
 	glutCreateWindow("Passenger and plane");
 	init();
 
+	//ShowCursor(false);
 	
 	//启用2D纹理和材质初始化
 	glEnable(GL_TEXTURE_2D);
@@ -514,20 +522,22 @@ int main(int argc, char *argv[])
 	glEnable(GL_DEPTH_TEST);
 	glTexParameterf(GL_NEAREST, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	refresh(0);
-	//纹理相关设置
+
 	texGround = load_texture("ground.bmp");
 	texWall = load_texture("wall.bmp");
-	texLeaf = load_texture("leaf.bmp");
-	texRedStone = load_texture("red.bmp");
+	texLeaf = load_texture("leaf.bmp");;
+	texRedStone = load_texture("red.bmp");;
 	texGrass = load_texture("grass.bmp");
 	texSoil = load_texture("soil.bmp");
 	texStone = load_texture("stone.bmp");
 	texWater = load_texture("water.bmp");
-	texWood = load_texture("wood.bmp"); 
+	texWood = load_texture("wood.bmp");
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutPassiveMotionFunc(passiveMotion);
+
+
 
 	glutMouseFunc(mouseButton);
 	glutMotionFunc(mouseMotion);

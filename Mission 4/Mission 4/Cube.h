@@ -1,7 +1,6 @@
-ï»¿#pragma once
+#pragma once
 #include "Param.h"
 #define BMP_Header_Length 54
-
 
 class Cube
 {
@@ -11,19 +10,23 @@ public:
 	~Cube();
 private:
 	float _x, _y, _z, _size;
-	Cube(float,float,float,float,GLuint,GLuint,GLuint);
-	void createCube();
-	~Cube();
-private:
-	float _x, _y,_z,_size;
 	GLuint _top, _bot, _side;
+public:
+	//const static GLuint texGround;
+	//const static GLuint texWall;
+	//const static GLuint texLeaf;
+	//const static GLuint texRedStone;
+	//const static GLuint texGrass;
+	//const static GLuint texSoil;
+	//const static GLuint texStone;
+	//const static GLuint texWater;
+	//const static GLuint texWood;
 };
+
 
 
 Cube::Cube(float x, float y, float z, float size, GLuint top, GLuint bot, GLuint side)
 	:_x(x), _y(y), _z(z), _size(size), _top(top), _bot(bot), _side(side)
-Cube::Cube(float x, float y, float z, float size , GLuint top, GLuint bot, GLuint side)
-	:_x(x),_y(y),_z(z),_size(size),_top(top),_bot(bot),_side(side)
 {
 }
 
@@ -31,11 +34,11 @@ Cube::~Cube()
 {
 }
 
-/* ï¿½ï¿½ï¿½ï¿½power_of_two
-* ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îª2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½0
-* Êµï¿½ï¿½ï¿½ï¿½Ö»Òªï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½0
-* ï¿½Ú¡ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½Ê±Ê¹ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
-* Ê¹ï¿½ï¿½n &= (n-1)ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½nï¿½ÐµÄ¼ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½
+/* º¯Êýpower_of_two
+* ¼ì²éÒ»¸öÕûÊýÊÇ·ñÎª2µÄÕûÊý´Î·½£¬Èç¹ûÊÇ£¬·µ»Ø1£¬·ñÔò·µ»Ø0
+* Êµ¼ÊÉÏÖ»Òª²é¿´Æä¶þ½øÖÆÎ»ÖÐÓÐ¶àÉÙ¸ö£¬Èç¹ûÕýºÃÓÐ1¸ö£¬·µ»Ø1£¬·ñÔò·µ»Ø0
+* ÔÚ¡°²é¿´Æä¶þ½øÖÆÎ»ÖÐÓÐ¶àÉÙ¸ö¡±Ê±Ê¹ÓÃÁËÒ»¸öÐ¡¼¼ÇÉ
+* Ê¹ÓÃn &= (n-1)¿ÉÒÔÊ¹µÃnÖÐµÄ¼õÉÙÒ»¸ö£¨¾ßÌåÔ­Àí´ó¼Ò¿ÉÒÔ×Ô¼ºË¼¿¼£©
 */
 int power_of_two(int n)
 {
@@ -44,9 +47,9 @@ int power_of_two(int n)
 	return (n & (n - 1)) == 0;
 }
 
-/* ï¿½ï¿½ï¿½ï¿½load_texture
-* ï¿½ï¿½È¡Ò»ï¿½ï¿½BMPï¿½Ä¼ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
-* ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+/* º¯Êýload_texture
+* ¶ÁÈ¡Ò»¸öBMPÎÄ¼þ×÷ÎªÎÆÀí
+* Èç¹ûÊ§°Ü£¬·µ»Ø0£¬Èç¹û³É¹¦£¬·µ»ØÎÆÀí±àºÅ
 */
 GLuint load_texture(const char* file_name)
 {
@@ -54,18 +57,18 @@ GLuint load_texture(const char* file_name)
 	GLubyte* pixels = 0;
 	GLuint last_texture_ID = 0, texture_ID = 0;
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ´ò¿ªÎÄ¼þ£¬Èç¹ûÊ§°Ü£¬·µ»Ø
 	FILE* pFile = fopen(file_name, "rb");
 	if (pFile == 0)
 		return 0;
 
-	// ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ÈºÍ¸ß¶ï¿½
+	// ¶ÁÈ¡ÎÄ¼þÖÐÍ¼ÏóµÄ¿í¶ÈºÍ¸ß¶È
 	fseek(pFile, 0x0012, SEEK_SET);
 	fread(&width, 4, 1, pFile);
 	fread(&height, 4, 1, pFile);
 	fseek(pFile, BMP_Header_Length, SEEK_SET);
 
-	// ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
+	// ¼ÆËãÃ¿ÐÐÏñËØËùÕ¼×Ö½ÚÊý£¬²¢¸ù¾Ý´ËÊý¾Ý¼ÆËã×ÜÏñËØ×Ö½ÚÊý
 	{
 		GLint line_bytes = width * 3;
 		while (line_bytes % 4 != 0)
@@ -73,7 +76,7 @@ GLuint load_texture(const char* file_name)
 		total_bytes = line_bytes * height;
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	// ¸ù¾Ý×ÜÏñËØ×Ö½ÚÊý·ÖÅäÄÚ´æ
 	pixels = (GLubyte*)malloc(total_bytes);
 	if (pixels == 0)
 	{
@@ -81,7 +84,7 @@ GLuint load_texture(const char* file_name)
 		return 0;
 	}
 
-	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ¶ÁÈ¡ÏñËØÊý¾Ý
 	if (fread(pixels, total_bytes, 1, pFile) <= 0)
 	{
 		free(pixels);
@@ -89,11 +92,11 @@ GLuint load_texture(const char* file_name)
 		return 0;
 	}
 
-	// ï¿½Ú¾É°æ±¾ï¿½ï¿½OpenGLï¿½ï¿½
-	// ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ÈºÍ¸ß¶È²ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	// ï¿½ï¿½ï¿½ï²¢Ã»ï¿½Ð¼ï¿½ï¿½ï¿½OpenGLï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶Ô°æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÄ¿ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½É°æ±¾ï¿½ï¿½ï¿½ï¿½
-	// ï¿½ï¿½ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾É°æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Â°æ±¾ï¿½ï¿½
-	// ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ÈºÍ¸ß¶È³ï¿½ï¿½ï¿½ï¿½ï¿½Ç°OpenGLÊµï¿½ï¿½ï¿½ï¿½Ö§ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ÖµÊ±ï¿½ï¿½Ò²Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚ¾É°æ±¾µÄOpenGLÖÐ
+	// Èç¹ûÍ¼ÏóµÄ¿í¶ÈºÍ¸ß¶È²»ÊÇµÄÕûÊý´Î·½£¬ÔòÐèÒª½øÐÐËõ·Å
+	// ÕâÀï²¢Ã»ÓÐ¼ì²éOpenGL°æ±¾£¬³öÓÚ¶Ô°æ±¾¼æÈÝÐÔµÄ¿¼ÂÇ£¬°´¾É°æ±¾´¦Àí
+	// ÁíÍâ£¬ÎÞÂÛÊÇ¾É°æ±¾»¹ÊÇÐÂ°æ±¾£¬
+	// µ±Í¼ÏóµÄ¿í¶ÈºÍ¸ß¶È³¬¹ýµ±Ç°OpenGLÊµÏÖËùÖ§³ÖµÄ×î´óÖµÊ±£¬Ò²Òª½øÐÐËõ·Å
 	{
 		GLint max;
 		glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max);
@@ -103,17 +106,17 @@ GLuint load_texture(const char* file_name)
 			|| height > max)
 		{
 			const GLint new_width = 256;
-			const GLint new_height = 256; // ï¿½æ¶¨ï¿½ï¿½ï¿½Åºï¿½ï¿½ÂµÄ´ï¿½Ð¡Îªï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			const GLint new_height = 256; // ¹æ¶¨Ëõ·ÅºóÐÂµÄ´óÐ¡Îª±ß³¤µÄÕý·½ÐÎ
 			GLint new_line_bytes, new_total_bytes;
 			GLubyte* new_pixels = 0;
 
-			// ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
+			// ¼ÆËãÃ¿ÐÐÐèÒªµÄ×Ö½ÚÊýºÍ×Ü×Ö½ÚÊý
 			new_line_bytes = new_width * 3;
 			while (new_line_bytes % 4 != 0)
 				++new_line_bytes;
 			new_total_bytes = new_line_bytes * new_height;
 
-			// ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+			// ·ÖÅäÄÚ´æ
 			new_pixels = (GLubyte*)malloc(new_total_bytes);
 			if (new_pixels == 0)
 			{
@@ -122,12 +125,12 @@ GLuint load_texture(const char* file_name)
 				return 0;
 			}
 
-			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ½øÐÐÏñËØËõ·Å
 			gluScaleImage(GL_RGB,
 				width, height, GL_UNSIGNED_BYTE, pixels,
 				new_width, new_height, GL_UNSIGNED_BYTE, new_pixels);
 
-			// ï¿½Í·ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½pixelsÖ¸ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½widthï¿½ï¿½height
+			// ÊÍ·ÅÔ­À´µÄÏñËØÊý¾Ý£¬°ÑpixelsÖ¸ÏòÐÂµÄÏñËØÊý¾Ý£¬²¢ÖØÐÂÉèÖÃwidthºÍheight
 			free(pixels);
 			pixels = new_pixels;
 			width = new_width;
@@ -136,7 +139,7 @@ GLuint load_texture(const char* file_name)
 		}
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ·ÖÅäÒ»¸öÐÂµÄÎÆÀí±àºÅ
 	glGenTextures(1, &texture_ID);
 	if (texture_ID == 0)
 	{
@@ -145,8 +148,8 @@ GLuint load_texture(const char* file_name)
 		return 0;
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	// ï¿½Ú°ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»Ö¸ï¿½
+	// °ó¶¨ÐÂµÄÎÆÀí£¬ÔØÈëÎÆÀí²¢ÉèÖÃÎÆÀí²ÎÊý
+	// ÔÚ°ó¶¨Ç°£¬ÏÈ»ñµÃÔ­À´°ó¶¨µÄÎÆÀí±àºÅ£¬ÒÔ±ãÔÚ×îºó½øÐÐ»Ö¸´
 	GLint lid = last_texture_ID;
 	glGetIntegerv(GL_TEXTURE_BINDING_2D, &lid);
 	glBindTexture(GL_TEXTURE_2D, texture_ID);
@@ -159,8 +162,8 @@ GLuint load_texture(const char* file_name)
 		GL_BGR_EXT, GL_UNSIGNED_BYTE, pixels);
 	glBindTexture(GL_TEXTURE_2D, last_texture_ID);
 
-	// Ö®Ç°Îªpixelsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½glTexImage2Dï¿½Ôºï¿½ï¿½Í·ï¿½
-	// ï¿½ï¿½Îªï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½OpenGLï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ý£ï¿½ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½ï¿½æµ½×¨ï¿½Åµï¿½Í¼ï¿½ï¿½Ó²ï¿½ï¿½ï¿½Ð£ï¿½
+	// Ö®Ç°Îªpixels·ÖÅäµÄÄÚ´æ¿ÉÔÚÊ¹ÓÃglTexImage2DÒÔºóÊÍ·Å
+	// ÒòÎª´ËÊ±ÏñËØÊý¾ÝÒÑ¾­±»OpenGLÁíÐÐ±£´æÁËÒ»·Ý£¨¿ÉÄÜ±»±£´æµ½×¨ÃÅµÄÍ¼ÐÎÓ²¼þÖÐ£©
 	free(pixels);
 
 	return texture_ID;
@@ -173,14 +176,14 @@ void Cube::createCube() {
 	float size = _size;
 	glBindTexture(GL_TEXTURE_2D, _bot);
 	glBegin(GL_QUADS);
-	//ï¿½ï¿½ï¿½ï¿½
+	//µ×Ãæ
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z);
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y, z + size);
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x + size, y, z + size);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x + size, y, z);
 	glEnd();
 
-	//ï¿½ï¿½ï¿½ï¿½
+	//²àÃæ
 	glBindTexture(GL_TEXTURE_2D, _side);
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z);
@@ -189,7 +192,7 @@ void Cube::createCube() {
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z);
 	glEnd();
 
-	//ï¿½ï¿½ï¿½ï¿½
+	//²àÃæ
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z + size);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z + size);
@@ -197,14 +200,14 @@ void Cube::createCube() {
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z + size);
 	glEnd();
 
-	//ï¿½ï¿½ï¿½ï¿½
+	//²àÃæ
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x + size, y, z + size);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x + size, y, z);
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(x + size, y + size, z);
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x + size, y + size, z + size);
 	glEnd();
-	//ï¿½ï¿½ï¿½ï¿½
+	//²àÃæ
 	glBegin(GL_QUADS);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y, z + size);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y, z);
@@ -212,7 +215,7 @@ void Cube::createCube() {
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x, y + size, z + size);
 	glEnd();
 
-	//ï¿½ï¿½ï¿½ï¿½
+	//¶¥Ãæ
 	glBindTexture(GL_TEXTURE_2D, _top);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y + size, z);
@@ -223,3 +226,14 @@ void Cube::createCube() {
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+
+//const GLuint Cube::texGround = load_texture("ground.bmp");
+//const GLuint Cube::texWall = load_texture("wall.bmp");
+//const GLuint Cube::texLeaf = load_texture("leaf.bmp");;
+//const GLuint Cube::texRedStone = load_texture("red.bmp");;
+//const GLuint Cube::texGrass = load_texture("grass.bmp");
+//const GLuint Cube::texSoil = load_texture("soil.bmp");
+//const GLuint Cube::texStone = load_texture("stone.bmp");
+//const GLuint Cube::texWater = load_texture("water.bmp");
+//const GLuint Cube::texWood = load_texture("wood.bmp");

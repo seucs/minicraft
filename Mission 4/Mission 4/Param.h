@@ -89,7 +89,7 @@ GLfloat MatShininess;
 int WindowWidth = 600;
 int WindowHeight = 600;
 
-//纹理
+//纹理相关设置
 GLuint texGround;
 GLuint texWall;
 GLuint texLeaf;
