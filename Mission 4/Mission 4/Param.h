@@ -117,4 +117,5 @@ GLfloat MatShininess;
 //´°¿Ú´óÐ¡
 int WindowWidth = 600;
 int WindowHeight = 600;
+#include"Lable.h"
 
