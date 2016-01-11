@@ -41,7 +41,13 @@
     <ClInclude Include="Cube.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CubeMap.h">
+    <ClInclude Include="TexCube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LightMaterial.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,14 +2,19 @@
 
 #include <iostream>
 #include <cmath>
+#include<map>
+#include<vector>
+#include<string>
 #include <windows.h>
 #include <gl/GLUT.h>
 #include "Point.h"
 #include "Crawler.h"
 #include "Man.h"
 #include "Cube.h"
-#include "CubeMap.h"
+#include "Digitalv.h"
 #include "TexCube.h"
+
+
 using namespace std;
 
 #define DELAY 12
@@ -17,6 +22,7 @@ using namespace std;
 #define BLOCK_SIZE 1
 #define VIEW_SCALE 2
 #define PI 3.1415926535898
+#define MAX_CHAR 128
 
 
 //相对坐标常量
@@ -26,7 +32,7 @@ using namespace std;
 Point center = Point(0, 0, 0);
 Point lookAt = Point(5, 5, 5);
 Point cameraAt = Point(5, 5, 5);
-Point godAt = Point(5, 5, 5);
+Point godAt = Point(8, 11, -18);
 
 float last_mm_x = 0;
 float last_mm_y = 0;
@@ -50,13 +56,34 @@ bool trackballMove = false;
 // 视角转换变量
 float angle = 0.0, axis[3], trans[3];
 float lastPos[3] = { 0.0F, 0.0F, 0.0F };
+float look_dy = 0;
 int curx, cury;
 int startX, startY;
 
+//飞机模型参数
+static int xRot = 0.;
+static int yRot = 0;
+static int zRot = 0;
+static double x_air, y_air, z_air;
+static double fly_distance = 20;
+
+static float fly_speed = 0.15;
+bool flying = false;
+bool spining = false;
 
 // 物体
 Man man;
-//Crawler crawler;
+vector<Crawler> crawler_arr;
+vector<Point> torch_arr;
+
+// 跳跃参数
+bool jumping = false;
+bool falling = false;
+float jump_speed = 0.3;
+float fall_speed = 0.3;
+static float max_height = 3.0;
+static float ground_height = 1.00;
+
 
 //相对坐标参数
 bool left_forward = true;
@@ -90,6 +117,4 @@ GLfloat MatShininess;
 //窗口大小
 int WindowWidth = 600;
 int WindowHeight = 600;
-
-
 
