@@ -341,7 +341,6 @@ void floor()
 	glColor3f(0.3f, 1.0f, 0.3f);
 	cube_mgr.createAllCube();
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
 }
 
 //display中视角切换设置
@@ -570,6 +569,8 @@ void mouseButton(int button, int state, int x, int y)
 			cameraAt.z *= VIEW_SCALE;
 		}
 	}
+	TexCube* newCube = new TexCube(man.x + 1, man.y, man.z + 1, 1.0f, Stone);
+	newCube->createCube();
 }
 // 鼠标移动回调函数
 void mouseMotion(int x, int y)
