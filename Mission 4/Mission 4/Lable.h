@@ -5,7 +5,7 @@ GLuint base;
 GLvoid BuildFont(GLvoid)										// Build Our Font Display List
 {
 	base = glGenLists(95);										// Creating 95 Display Lists
-	glBindTexture(GL_TEXTURE_2D, texWater);			// Bind Our Font Texture
+	glBindTexture(GL_TEXTURE_2D, Cube::texWater);			// Bind Our Font Texture
 	for (int loop = 0; loop<95; loop++)							// Loop Through All 95 Lists
 	{
 		float cx = float(loop % 16) / 16.0f;							// X Position Of Current Character

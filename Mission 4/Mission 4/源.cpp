@@ -73,7 +73,6 @@ void drawString(const char* str) {
 	for (; *str != '\0'; ++str)
 		glCallList(lists + *str);
 }
-
 // 小飞机
 void plane()
 {
@@ -507,7 +506,6 @@ void reshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
-
 // 鼠标空闲回调函数
 void passiveMotion(int x, int y)
 {
@@ -683,28 +681,8 @@ void initCube()
 	glTexParameterf(GL_NEAREST, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	refresh(0);
 
-	texRedStone = load_texture("img/redStone.bmp");
-	texGrass = load_texture("img/grass.bmp");
-	texSoil = load_texture("img/soil.bmp");
-	texStone = load_texture("img/stone.bmp");
-	texWater = load_texture("img/water.bmp");
-	texWood = load_texture("img/wood.bmp");
-	texDirt = load_texture("img/dirt.bmp");;
-	texBrick = load_texture("img/brick.bmp");
-	texTabletop = load_texture("img/tabletop.bmp");
-	texTableside = load_texture("img/tableside1.bmp");
-	texDiamond = load_texture("img/diamond.bmp");
-	texTnttop = load_texture("img/tnttop.bmp");
-	texTntside = load_texture("img/tntside.bmp");
-	texTreetop = load_texture("img/treetop.bmp");
-	texTreeside = load_texture("img/treeside.bmp");
-	texLeaf = load_texture("img/leaf.bmp");
-	texBookshelf = load_texture("img/bookshelf.bmp");
-	texRedSand = load_texture("img/redsand.bmp");
-	texSand = load_texture("img/sand.bmp");
+	Cube::initCubeTexture();
 
-
-	int x, y, z;
 	int num_cube = 25;
 
 	for (int i = num_cube; i >= (-num_cube); i--)

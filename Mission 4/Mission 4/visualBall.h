@@ -7,7 +7,7 @@
 float curPos[3], dx, dy, dz;
 
 // trackball
-// åœ¨ mouseMotion() ä¸­åŠ å…¥æ­¤å‡½æ•°
+// ÔÚ mouseMotion() ÖĞ¼ÓÈë´Ëº¯Êı
 void trackball_ptov(int x, int y, int width, int height, float v[3])
 {
 	float d, a;
@@ -22,7 +22,7 @@ void trackball_ptov(int x, int y, int width, int height, float v[3])
 	v[2] *= a;
 }
 
-// åœ¨ mouseMotion() ä¸­åŠ å…¥æ­¤å‡½æ•°ï¼ŒåŠ åœ¨ trackball_ptov() ä¹‹å
+// ÔÚ mouseMotion() ÖĞ¼ÓÈë´Ëº¯Êı£¬¼ÓÔÚ trackball_ptov() Ö®ºó
 void trackMouse()
 {
   if (trackingMouse)

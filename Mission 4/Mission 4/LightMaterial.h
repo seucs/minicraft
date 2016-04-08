@@ -13,8 +13,6 @@ using namespace std;
 #define COLOR_RED		0.6f,0.2f,0.2f
 #define COLOR_YELLOW	1.0f,0.725f,0.125f
 
-#define PI 3.1415926
-
 //光源位置参数
 GLfloat light_Distance = 50.0f;	//光源和原点的距离
 GLfloat light_Angle = 0.0f;		//光源的角度

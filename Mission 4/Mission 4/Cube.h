@@ -7,15 +7,36 @@ class Cube
 public:
 	Cube(float, float, float, float, GLuint, GLuint, GLuint);
 	void createCube();
+	static int power_of_two(int n);
+	static GLuint load_texture(const char* file_name);
+	static void initCubeTexture();
 	~Cube();	
 public:
 	float _x, _y, _z, _size;
+public:
+	static GLuint texRedStone;
+	static GLuint texGrass;
+	static GLuint texSoil;
+	static GLuint texStone;
+	static GLuint texWater;
+	static GLuint texWood;
+	static GLuint texDirt;
+	static GLuint texBrick;
+	static GLuint texTabletop;
+	static GLuint texTableside;
+	static GLuint texDiamond;
+	static GLuint texTnttop;
+	static GLuint texTntside;
+	static GLuint texTreetop;
+	static GLuint texTreeside;
+	static GLuint texLeaf;
+	static GLuint texBookshelf;
+	static GLuint texRedSand;
+	static GLuint texSand;
 protected:
 	Cube() {};
 	GLuint _top, _bot, _side;
 };
-
-
 
 Cube::Cube(float x, float y, float z, float size, GLuint top, GLuint bot, GLuint side)
 	:_x(x), _y(y), _z(z), _size(size), _top(top), _bot(bot), _side(side)
@@ -26,24 +47,16 @@ Cube::~Cube()
 {
 }
 
-/* 函数power_of_two
-* 检查一个整数是否为2的整数次方，如果是，返回1，否则返回0
-* 实际上只要查看其二进制位中有多少个，如果正好有1个，返回1，否则返回0
-* 在“查看其二进制位中有多少个”时使用了一个小技巧
-* 使用n &= (n-1)可以使得n中的减少一个（具体原理大家可以自己思考）
-*/
-int power_of_two(int n)
+// 检查一个整数是否为2的整数次方，如果是，返回1，否则返回0
+int Cube::power_of_two(int n)
 {
 	if (n <= 0)
 		return 0;
 	return (n & (n - 1)) == 0;
 }
 
-/* 函数load_texture
-* 读取一个BMP文件作为纹理
-* 如果失败，返回0，如果成功，返回纹理编号
-*/
-GLuint load_texture(const char* file_name)
+//读取一个BMP文件作为纹理
+GLuint Cube::load_texture(const char* file_name)
 {
 	GLint width, height, total_bytes;
 	GLubyte* pixels = 0;
@@ -224,4 +237,46 @@ void Cube::createCube() {
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+//初始化材质
+void Cube::initCubeTexture()
+{
+	texRedStone = Cube::load_texture("img/redStone.bmp");
+	texGrass = Cube::load_texture("img/grass.bmp");
+	texSoil = Cube::load_texture("img/soil.bmp");
+	texStone = Cube::load_texture("img/stone.bmp");
+	texWater = Cube::load_texture("img/water.bmp");
+	texWood = Cube::load_texture("img/wood.bmp");
+	texDirt = Cube::load_texture("img/dirt.bmp");;
+	texBrick = Cube::load_texture("img/brick.bmp");
+	texTabletop = Cube::load_texture("img/tabletop.bmp");
+	texTableside = Cube::load_texture("img/tableside1.bmp");
+	texDiamond = Cube::load_texture("img/diamond.bmp");
+	texTnttop = Cube::load_texture("img/tnttop.bmp");
+	texTntside = Cube::load_texture("img/tntside.bmp");
+	texTreetop = Cube::load_texture("img/treetop.bmp");
+	texTreeside = Cube::load_texture("img/treeside.bmp");
+	texLeaf = Cube::load_texture("img/leaf.bmp");
+	texBookshelf = Cube::load_texture("img/bookshelf.bmp");
+	texRedSand = Cube::load_texture("img/redsand.bmp");
+	texSand = Cube::load_texture("img/sand.bmp");
+}
 
+GLuint Cube::texRedStone = 0;
+GLuint Cube::texGrass = 0;
+GLuint Cube::texSoil = 0;
+GLuint Cube::texStone = 0;
+GLuint Cube::texWater = 0;
+GLuint Cube::texWood = 0;
+GLuint Cube::texDirt = 0;
+GLuint Cube::texBrick = 0;
+GLuint Cube::texTabletop = 0;
+GLuint Cube::texTableside = 0;
+GLuint Cube::texDiamond = 0;
+GLuint Cube::texTnttop = 0;
+GLuint Cube::texTntside = 0;
+GLuint Cube::texTreetop = 0;
+GLuint Cube::texTreeside = 0;
+GLuint Cube::texLeaf = 0;
+GLuint Cube::texBookshelf = 0;
+GLuint Cube::texRedSand = 0;
+GLuint Cube::texSand = 0;

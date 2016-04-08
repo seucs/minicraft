@@ -1,25 +1,7 @@
 #pragma once
 #include"Cube.h"
+
 //纹理相关设置
-GLuint texRedStone;
-GLuint texGrass;
-GLuint texSoil;
-GLuint texStone;
-GLuint texWater;
-GLuint texWood;
-GLuint texDirt;
-GLuint texBrick;
-GLuint texTabletop;
-GLuint texTableside;
-GLuint texDiamond;
-GLuint texTnttop;
-GLuint texTntside;
-GLuint texTreetop;
-GLuint texTreeside;
-GLuint texLeaf;
-GLuint texBookshelf;
-GLuint texRedSand;
-GLuint texSand;
 enum CubeTex {
 	Wood,
 	Water,
@@ -61,79 +43,79 @@ TexCube::TexCube(float x, float y, float z, float size, CubeTex tex)
 	switch (tex)
 	{
 	case Wood:
-		_top = texWood;
-		_bot = texWood;
-		_side = texWood;
+		_top = Cube::texWood;
+		_bot = Cube::texWood;
+		_side = Cube::texWood;
 		break;
 	case Water:
-		_top = texWater;
-		_bot = texWater;
-		_side = texWater;
+		_top = Cube::texWater;
+		_bot = Cube::texWater;
+		_side = Cube::texWater;
 		break;
 	case Soil:
-		_top = texGrass;
-		_bot = texGrass;
-		_side = texSoil;
+		_top = Cube::texGrass;
+		_bot = Cube::texGrass;
+		_side = Cube::texSoil;
 		break;
 	case Stone:
-		_top = texStone;
-		_bot = texStone;
-		_side = texStone;
+		_top = Cube::texStone;
+		_bot = Cube::texStone;
+		_side = Cube::texStone;
 		break;
 	case RedStone:
-		_top = texRedStone;
-		_bot = texRedStone;
-		_side = texRedStone;
+		_top = Cube::texRedStone;
+		_bot = Cube::texRedStone;
+		_side = Cube::texRedStone;
 		break;
 	case Dirt:
-		_top = texDirt;
-		_bot = texDirt;
-		_side = texDirt;
+		_top = Cube::texDirt;
+		_bot = Cube::texDirt;
+		_side = Cube::texDirt;
 		break;
 	case Brick:
-		_top = texBrick;
-		_bot = texBrick;
-		_side = texBrick;
+		_top = Cube::texBrick;
+		_bot = Cube::texBrick;
+		_side = Cube::texBrick;
 		break;
 	case Table:
-		_top = texTabletop;
-		_bot = texTabletop;
-		_side = texTableside;
+		_top = Cube::texTabletop;
+		_bot = Cube::texTabletop;
+		_side = Cube::texTableside;
 		break;
 	case Diamond:
-		_top = texDiamond;
-		_bot = texDiamond;
-		_side = texDiamond;
+		_top = Cube::texDiamond;
+		_bot = Cube::texDiamond;
+		_side = Cube::texDiamond;
 		break;
 	case Tnt:
-		_top = texTnttop;
-		_bot = texTnttop;
-		_side = texTntside;
+		_top = Cube::texTnttop;
+		_bot = Cube::texTnttop;
+		_side = Cube::texTntside;
 		break;
 	case Tree:
-		_top = texTreetop;
-		_bot = texTreetop;
-		_side = texTreeside;
+		_top = Cube::texTreetop;
+		_bot = Cube::texTreetop;
+		_side = Cube::texTreeside;
 		break;
 	case Leaf:
-		_top = texLeaf;
-		_bot = texLeaf;
-		_side = texLeaf;
+		_top = Cube::texLeaf;
+		_bot = Cube::texLeaf;
+		_side = Cube::texLeaf;
 		break;
 	case Bookshelf:
-		_top = texWood;
-		_bot = texWood;
-		_side = texBookshelf;
+		_top = Cube::texWood;
+		_bot = Cube::texWood;
+		_side = Cube::texBookshelf;
 		break;
 	case RedSand:
-		_top = texRedSand;
-		_bot = texRedSand;
-		_side = texRedSand;
+		_top = Cube::texRedSand;
+		_bot = Cube::texRedSand;
+		_side = Cube::texRedSand;
 		break;
 	case Sand:
-		_top = texSand;
-		_bot = texSand;
-		_side = texSand;
+		_top = Cube::texSand;
+		_bot = Cube::texSand;
+		_side = Cube::texSand;
 		break;
 	default:
 		break;

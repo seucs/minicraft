@@ -13,42 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Entity">
+      <UniqueIdentifier>{0bf4b215-19f7-4c18-993c-6ed68446fbeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Struct">
+      <UniqueIdentifier>{21a81ddc-03c8-474b-8bdb-a23524ebafeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Manager">
+      <UniqueIdentifier>{4587bb8f-613d-41f9-b1a2-fec8ed591411}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="objLoader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="源.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Crawler.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Man.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Param.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Man.h">
+      <Filter>头文件\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="visualBall.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Crawler.h">
+      <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Entity</Filter>
     </ClInclude>
     <ClInclude Include="TexCube.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>头文件\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="visualBall.h">
+      <Filter>头文件\Manager</Filter>
     </ClInclude>
     <ClInclude Include="CubeManager.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Manager</Filter>
     </ClInclude>
     <ClInclude Include="LightMaterial.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
