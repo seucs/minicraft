@@ -1,4 +1,4 @@
-# My MineCraft
+# My Minecraft
 
 ## Overview
 本学期上了一门计算机与图形学课，决定趁势研究一下minecraft怎么做出来的。
